@@ -3,6 +3,7 @@ from functools import lru_cache
 from pydantic_settings import BaseSettings
 
 from .application import ApplicationSettings
+from .database import DatabaseSettings
 
 
 class Settings(
@@ -13,6 +14,7 @@ class Settings(
     env_nested_delimiter="__",
 ):
     application: ApplicationSettings = ApplicationSettings()
+    database: DatabaseSettings = DatabaseSettings()
 
 
 @lru_cache
