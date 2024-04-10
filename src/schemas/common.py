@@ -1,7 +1,7 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 from src.enums import ResponseStatusEnum
 
 
-class CommonSchema(BaseModel):
+class CommonResponseSchema(BaseModel):
     status: ResponseStatusEnum = ResponseStatusEnum.OK

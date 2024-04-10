@@ -1,5 +1,5 @@
 __all__ = [
-    "CommonSchema",
+    "CommonResponseSchema",
 ]
 
-from .common import CommonSchema
+from .common import CommonResponseSchema

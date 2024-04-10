@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from src.schemas import CommonSchema
+from src.schemas import CommonResponseSchema
 
 router = APIRouter(
     tags=["common"],
@@ -8,5 +8,5 @@ router = APIRouter(
 
 
 @router.get("/")
-async def common_home_handler() -> CommonSchema:
-    return CommonSchema()
+async def common_home_handler() -> CommonResponseSchema:
+    return CommonResponseSchema()
