@@ -1,12 +1,18 @@
 from functools import lru_cache
 
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings
+
+from .application import ApplicationSettings
 
 
-class Settings(BaseSettings):
-    test_prop: str = "Test prop"
-
-    model_config = SettingsConfigDict(env_file=".env")
+class Settings(
+    BaseSettings,
+    env_file=".env",
+    env_file_encoding="utf-8",
+    extra="allow",
+    env_nested_delimiter="__",
+):
+    application: ApplicationSettings = ApplicationSettings()
 
 
 @lru_cache
