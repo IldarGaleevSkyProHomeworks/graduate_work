@@ -5,13 +5,13 @@ from fastapi import APIRouter, Header, Path, Body
 from starlette import status
 
 from src.exceptions import AppHTTPException
-from src.repository import UserSecret
 from src.schemas import (
     CreateSecretRequestSchema,
     CreateSecretResponseSchema,
     GetSecretResponseSchema,
     ExceptionSchema,
 )
+from src.services import UserSecret
 
 router = APIRouter(tags=["secret"])
 logger = logging.getLogger(__name__)
