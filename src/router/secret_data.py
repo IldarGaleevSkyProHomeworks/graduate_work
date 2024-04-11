@@ -1,7 +1,7 @@
 import logging
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, Header, Path
+from fastapi import APIRouter, Header, Path, Body
 from starlette import status
 
 from src.exceptions import AppHTTPException
@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 async def create_secret_handler(
     data: Annotated[
         CreateSecretRequestSchema,
-        Depends(),
+        Body(),
     ],
 ) -> CreateSecretResponseSchema:
     try:
