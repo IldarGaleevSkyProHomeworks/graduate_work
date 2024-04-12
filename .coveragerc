@@ -1,0 +1,9 @@
+[run]
+branch = True
+source = .
+
+omit =
+    */tests/*
+     */__init__.py
+    */models/*
+    */enums/*
