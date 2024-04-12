@@ -24,10 +24,14 @@ black = "^24.3.0"
 [tool.poetry.group.test.dependencies]
 pytest = "^8.1.1"
 pytest-asyncio = "^0.23.6"
+pytest-dependency = "^0.6.0"
 
 [tool.pytest.ini_options]
 pythonpath = [
     ".", "src",
+]
+markers = [
+    "repository"
 ]
 asyncio_mode="auto"
 
