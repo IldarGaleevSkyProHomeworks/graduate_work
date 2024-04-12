@@ -1,4 +1,4 @@
-import unittest
+import unittest.mock
 
 import pytest
 
@@ -12,6 +12,9 @@ def fixture_override_settings() -> Settings:
         def __init__(self):
             super().__init__()
             self.database.mongo_db_name = "test_db"
+
+            self.application.url_scheme = "https"
+            self.application.hostname = "test.host.com"
 
     test_settings = OverrideSettings()
 
