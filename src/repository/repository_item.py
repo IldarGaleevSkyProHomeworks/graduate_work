@@ -9,9 +9,13 @@ from src.database.mongodb import get_db_context
 class RepositoryItem:
     COLLECTION_NAME = None
 
-    def __init__(self, prop: Settings = get_settings()):
+    def __init__(self, prop: Settings = None):
         if self.COLLECTION_NAME is None:
             raise Exception("Collection is not set")
+
+        if prop is None:
+            prop = get_settings()
+
         self._db_session = get_db_context(prop)
 
     async def __aenter__(self):
