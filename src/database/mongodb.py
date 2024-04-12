@@ -6,11 +6,19 @@ from src.config import Settings
 
 
 @asynccontextmanager
+async def get_db_connection(
+    prop: Settings,
+) -> AsyncIOMotorClient:
+    conn = AsyncIOMotorClient(prop.database.mongo_dsn)
+    try:
+        yield conn
+    finally:
+        conn.close()
+
+
+@asynccontextmanager
 async def get_db_context(
     prop: Settings,
 ) -> AsyncIOMotorDatabase:
-    conn = AsyncIOMotorClient(prop.database.mongo_dsn)
-    try:
+    async with get_db_connection(prop) as conn:
         yield conn.get_database(prop.database.mongo_db_name)
-    finally:
-        conn.close()

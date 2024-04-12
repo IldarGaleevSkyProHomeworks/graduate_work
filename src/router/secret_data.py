@@ -11,7 +11,7 @@ from src.schemas import (
     GetSecretResponseSchema,
     ExceptionSchema,
 )
-from src.services import UserSecret
+from src import services
 
 router = APIRouter(tags=["secret"])
 logger = logging.getLogger(__name__)
@@ -25,7 +25,7 @@ async def create_secret_handler(
     ],
 ) -> CreateSecretResponseSchema:
     try:
-        return await UserSecret.create_item(
+        return await services.UserSecret.create_item(
             data,
         )
     except Exception as e:
@@ -55,4 +55,4 @@ async def get_secret_handler(
         ),
     ],
 ) -> GetSecretResponseSchema:
-    return await UserSecret.get_item_by_id(secret_id, secret_key)
+    return await services.UserSecret.get_item_by_id(secret_id, secret_key)

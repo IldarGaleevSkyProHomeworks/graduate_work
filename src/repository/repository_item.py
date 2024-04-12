@@ -9,9 +9,14 @@ from src.database.mongodb import get_db_context
 class RepositoryItem:
     COLLECTION_NAME = None
 
-    def __init__(self, prop: Settings = get_settings()):
+    def __init__(self, prop: Settings = None):  # pragma: no cover
+
         if self.COLLECTION_NAME is None:
             raise Exception("Collection is not set")
+
+        if prop is None:
+            prop = get_settings()
+
         self._db_session = get_db_context(prop)
 
     async def __aenter__(self):
@@ -31,18 +36,18 @@ class RepositoryItem:
         self,
         item,
     ):
-        pass
+        pass  # pragma: no cover
 
     @abstractmethod
     async def get_item_by_id(
         self,
         user_secret_id: str,
     ):
-        pass
+        pass  # pragma: no cover
 
     @abstractmethod
     async def delete_item(
         self,
         item,
     ):
-        pass
+        pass  # pragma: no cover
