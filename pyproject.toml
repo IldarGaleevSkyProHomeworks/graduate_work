@@ -32,7 +32,8 @@ pythonpath = [
     ".", "src",
 ]
 markers = [
-    "repository"
+    "repository",
+    "services"
 ]
 asyncio_mode="auto"
 
