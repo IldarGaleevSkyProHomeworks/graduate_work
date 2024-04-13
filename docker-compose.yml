@@ -1,0 +1,56 @@
+version: '3.3'
+
+services:
+
+  fl_app:
+    depends_on:
+      - mongo
+    environment:
+      DATABASE__MONGO_DSN: "mongodb://root:example@mongo:27017/"
+      DATABASE__MONGO_DB_NAME: "fading_letter"
+      APPLICATION__PASSWORD_GEN_LEN: 10
+    build: .
+
+
+    command: python -m uvicorn src.main:app --host 0.0.0.0 --port 80 --workers 2
+    restart: always
+
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost/ || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    ports:
+      - "8080:80"
+    networks:
+      - net_lan
+
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+    volumes:
+      - fl_mongodbdata:/data/db
+      - ./mongod.conf:/etc/mongo/mongod.conf
+
+    command: mongod --config /etc/mongo/mongod.conf
+
+    restart: always
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh root:passwd@localhost:27017/test --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - net_lan
+
+volumes:
+  fl_mongodbdata:
+
+networks:
+  net_lan:
+    driver: bridge

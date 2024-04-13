@@ -1,0 +1,9 @@
+/htmlcov/**
+/.git/
+**/tests/
+*.md
+.coverage*
+.env*
+.flake8
+LICENSE
+mongod.conf
