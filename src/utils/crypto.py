@@ -1,6 +1,8 @@
+from hashlib import sha3_256
 from platform import system
 
 platform = system().lower()
+
 
 if platform == "windows":
     from Cryptodome.Cipher import AES
@@ -12,8 +14,6 @@ elif platform == "linux":
     from Crypto.Random import get_random_bytes
 else:
     raise Exception(f"Unknown platform {platform}")
-
-from hashlib import sha3_256
 
 
 def encrypt(plaintext: str, key: str) -> bytes:
