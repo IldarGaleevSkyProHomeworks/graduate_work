@@ -38,7 +38,16 @@ async def create_secret_handler(
 
 @router.get(
     "/secrets/{secret_id}",
-    responses={404: {"model": ExceptionSchema}},
+    responses={
+        status.HTTP_403_FORBIDDEN: {
+            "description": "If a secret key is wrong",
+            "model": ExceptionSchema,
+        },
+        status.HTTP_404_NOT_FOUND: {
+            "description": "If a secret is not found",
+            "model": ExceptionSchema,
+        },
+    },
 )
 async def get_secret_handler(
     secret_id: Annotated[
