@@ -45,3 +45,9 @@
 | `APPLICATION__PASSWORD_GEN_LEN` | Длина генерируемого пароля                                                                    |
 | `DATABASE__MONGO_DSN`           | Строка подключения к БД вида `mongodb://[username:password@]host[/[defaultauthdb][?options]]` |
 | `DATABASE__MONGO_DB_NAME`       | Имя базы данных                                                                               |
+
+### Точка входа
+
+```powershell
+ python -m uvicorn src.main:app --host 0.0.0.0 --port 8080 --workers 2
+```
