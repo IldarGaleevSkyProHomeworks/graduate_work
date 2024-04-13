@@ -9,7 +9,7 @@ from src.config import Settings
 async def get_db_connection(
     prop: Settings,
 ) -> AsyncIOMotorClient:
-    conn = AsyncIOMotorClient(prop.database.mongo_dsn)
+    conn = AsyncIOMotorClient(str(prop.database.mongo_dsn))
     try:
         yield conn
     finally:
@@ -21,4 +21,4 @@ async def get_db_context(
     prop: Settings,
 ) -> AsyncIOMotorDatabase:
     async with get_db_connection(prop) as conn:
-        yield conn.get_database(prop.database.mongo_db_name)
+        yield conn.get_database(str(prop.database.mongo_db_name))
