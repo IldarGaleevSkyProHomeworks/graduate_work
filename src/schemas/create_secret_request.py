@@ -20,5 +20,5 @@ class CreateSecretRequestSchema(BaseModel):
     ttl: int | None = Field(
         default=None,
         le=24 * 365,
-        description="Time to live (Hours)",
+        description="Time to live (Minutes)",
     )

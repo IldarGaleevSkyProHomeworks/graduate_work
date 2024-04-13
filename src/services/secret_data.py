@@ -31,7 +31,7 @@ class UserSecret:
         user_secret = ModelUserSecret(
             data=crypto.encrypt(data.message, secret_key),
             expireAt=(
-                datetime.utcnow() + timedelta(seconds=data.ttl) if data.ttl else None
+                datetime.utcnow() + timedelta(minutes=data.ttl) if data.ttl else None
             ),
         )
 
