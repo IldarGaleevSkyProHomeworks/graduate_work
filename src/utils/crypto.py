@@ -1,6 +1,18 @@
-from Cryptodome.Cipher import AES
-from Cryptodome.Util.Padding import pad, unpad
-from Cryptodome.Random import get_random_bytes
+from platform import system
+
+platform = system().lower()
+
+if platform == "windows":
+    from Cryptodome.Cipher import AES
+    from Cryptodome.Util.Padding import pad, unpad
+    from Cryptodome.Random import get_random_bytes
+elif platform == "linux":
+    from Crypto.Cipher import AES
+    from Crypto.Util.Padding import pad, unpad
+    from Crypto.Random import get_random_bytes
+else:
+    raise Exception(f"Unknown platform {platform}")
+
 from hashlib import sha3_256
 
 
