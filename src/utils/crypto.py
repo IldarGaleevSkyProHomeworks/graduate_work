@@ -8,7 +8,7 @@ if platform == "windows":
     from Cryptodome.Cipher import AES
     from Cryptodome.Util.Padding import pad, unpad
     from Cryptodome.Random import get_random_bytes
-elif platform == "linux":
+elif platform in ("linux", "darwin"):
     from Crypto.Cipher import AES
     from Crypto.Util.Padding import pad, unpad
     from Crypto.Random import get_random_bytes

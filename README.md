@@ -40,11 +40,17 @@
 
 ### Переменные среды
 
+Шаблон файла [.env](.env.template)
+
 | Переменная                      | Описание                                                                                      |
 |---------------------------------|-----------------------------------------------------------------------------------------------|
 | `APPLICATION__PASSWORD_GEN_LEN` | Длина генерируемого пароля                                                                    |
 | `DATABASE__MONGO_DSN`           | Строка подключения к БД вида `mongodb://[username:password@]host[/[defaultauthdb][?options]]` |
 | `DATABASE__MONGO_DB_NAME`       | Имя базы данных                                                                               |
+| `APPLICATION__CORS_ORIGINS`     | Список разрешенных хостов для CORS                                                            |
+| `APPLICATION__CORS_METHODS`     | Список разрешенных методов для CORS                                                           |
+| `APPLICATION__CORS_HEADERS`     | Список разрешенных заголовков для CORS                                                        |
+
 
 ### Точка входа
 
